@@ -22,8 +22,8 @@ public class CustomerDao implements Dao<Customer> {
 
     @Override
     public Customer get(int id) {
-        Customer user = null;
-        String sql = "SELECT * FROM user WHERE user_id=?";
+        Customer customer = null;
+        String sql = "SELECT * FROM customer WHERE customer_id=?";
         Connection conn = DatabaseHelper.getConnect();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -31,17 +31,17 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                user = Customer.fromRS(rs);
+                customer = Customer.fromRS(rs);
             }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return user;
+        return customer;
     }
 
     public Customer getByTel(String tel) {
-        Customer user = null;
+        Customer customer = null;
         String sql = "SELECT * FROM customer WHERE customer_tel=?";
         Connection conn = DatabaseHelper.getConnect();
         try {
@@ -50,13 +50,13 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
-                user = Customer.fromRS(rs);
+                customer = Customer.fromRS(rs);
             }
 
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return user;
+        return customer;
     }
 
     public List<Customer> getAll() {
@@ -68,8 +68,8 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Customer user = Customer.fromRS(rs);
-                list.add(user);
+                Customer customer = Customer.fromRS(rs);
+                list.add(customer);
 
             }
 
@@ -89,8 +89,8 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Customer user = Customer.fromRS(rs);
-                list.add(user);
+                Customer customer = Customer.fromRS(rs);
+                list.add(customer);
 
             }
 
@@ -110,8 +110,8 @@ public class CustomerDao implements Dao<Customer> {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                Customer user = Customer.fromRS(rs);
-                list.add(user);
+                Customer customer = Customer.fromRS(rs);
+                list.add(customer);
 
             }
 

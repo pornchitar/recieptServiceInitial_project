@@ -4,8 +4,8 @@
  */
 package com.werapan.databaseproject.service;
 
-import com.werapan.databaseproject.dao.CustomerDao;
-import com.werapan.databaseproject.model.Customer;
+import com.werapan.databaseproject.dao.RecieptDao;
+import com.werapan.databaseproject.model.Reciept;
 import java.util.List;
 
 /**
@@ -13,30 +13,28 @@ import java.util.List;
  * @author werapan
  */
 public class RecieptService {
-    public Customer getByTel(String tel) {
-        CustomerDao customerDao = new CustomerDao();
-        Customer customer = customerDao.getByTel(tel);
-        
-        return customer;
+    public Reciept getById(int id){
+        RecieptDao reciptDao = new RecieptDao();
+        return reciptDao.get(id);
     }
     
-    public List<Customer> getCustomers(){
-        CustomerDao customerDao = new CustomerDao();
-        return customerDao.getAll(" customer_id asc");
+    public List<Reciept> getReciepts(){
+        RecieptDao recieptDao = new RecieptDao();
+        return recieptDao.getAll(" reciept_id asc");
     }
 
-    public Customer addNew(Customer editedCustomer) {
-        CustomerDao customerDao = new CustomerDao();
-        return customerDao.save(editedCustomer);
+    public Reciept addNew(Reciept editedReciept) {
+        RecieptDao recieptDao = new RecieptDao();
+        return recieptDao.save(editedReciept);
     }
 
-    public Customer update(Customer editedCustomer) {
-        CustomerDao customerDao = new CustomerDao();
-        return customerDao.update(editedCustomer);
+    public Reciept update(Reciept editedReciept) {
+        RecieptDao recieptDao = new RecieptDao();
+        return recieptDao.update(editedReciept);
     }
 
-    public int delete(Customer editedCustomer) {
-        CustomerDao customerDao = new CustomerDao();
-        return customerDao.delete(editedCustomer);
+    public int delete(Reciept editedReciept) {
+        RecieptDao recieptDao = new RecieptDao();
+        return recieptDao.delete(editedReciept);
     }
 }

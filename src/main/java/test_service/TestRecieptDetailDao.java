@@ -17,5 +17,7 @@ public class TestRecieptDetailDao {
         for(RecieptDetail rd :rdd.getAll()){
             System.out.println(rd);
         }
+        RecieptDetail newRecieptDetail = new RecieptDetail();
+        
     }
 }

@@ -42,7 +42,7 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
 
     public List<RecieptDetail> getAll() {
         ArrayList<RecieptDetail> list = new ArrayList();
-        String sql = "SELECT * FROM recieptDetail";
+        String sql = "SELECT * FROM reciept_detail";
         Connection conn = DatabaseHelper.getConnect();
         try {
             Statement stmt = conn.createStatement();
@@ -63,7 +63,7 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
     @Override
     public List<RecieptDetail> getAll(String where, String order) {
         ArrayList<RecieptDetail> list = new ArrayList();
-        String sql = "SELECT * FROM recieptDetail where " + where + " ORDER BY" + order;
+        String sql = "SELECT * FROM reciept_detail where " + where + " ORDER BY" + order;
         Connection conn = DatabaseHelper.getConnect();
         try {
             Statement stmt = conn.createStatement();
@@ -84,7 +84,7 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
 
     public List<RecieptDetail> getAll(String order) {
         ArrayList<RecieptDetail> list = new ArrayList();
-        String sql = "SELECT * FROM recieptDetail  ORDER BY" + order;
+        String sql = "SELECT * FROM reciept_detail  ORDER BY" + order;
         Connection conn = DatabaseHelper.getConnect();
         try {
             Statement stmt = conn.createStatement();
@@ -105,16 +105,17 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
     @Override
     public RecieptDetail save(RecieptDetail obj) {
 
-        String sql = "INSERT INTO recieptDetail (total, cash, total_qty, user_id, customer_id)"
-                + "VALUES(?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO reciept_detail (product_id, product_name, product_price, qty, total_price, reciept_id)"
+                + "VALUES(?, ?, ?, ?, ?, ?)";
         Connection conn = DatabaseHelper.getConnect();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setFloat(1, obj.getTotal());
-            stmt.setFloat(2, obj.getCash());
-            stmt.setInt(3, obj.getTotalQty());
-            stmt.setInt(4, obj.getUserId());
-            stmt.setInt(5, obj.getCustomerId());
+            stmt.setInt(1, obj.getProductId());
+            stmt.setString(2, obj.getProductName());
+            stmt.setFloat(3, obj.getProductPrice());
+            stmt.setInt(4, obj.getQty());
+            stmt.setFloat(5, obj.getTotalPrice());
+            stmt.setInt(6, obj.getRecieptId());
 //            System.out.println(stmt);
             stmt.executeUpdate();
             int id = DatabaseHelper.getInsertedId(stmt);
@@ -129,17 +130,18 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
     @Override
     public RecieptDetail update(RecieptDetail obj) {
         String sql = "UPDATE recieptDetail"
-                + " SET total = ?, cash = ?, total_qty = ?, user_id = ?, customer_id = ?"
-                + " WHERE recieptDetail_id = ?";
+                + " SET product_id = ?, product_name = ?, product_price = ?, qty = ?, total_price = ?, reciept_id = ?"
+                + " WHERE reciept_detail_id = ?";
         Connection conn = DatabaseHelper.getConnect();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setFloat(1, obj.getTotal());
-            stmt.setFloat(2, obj.getCash());
-            stmt.setInt(3, obj.getTotalQty());
-            stmt.setInt(4, obj.getUserId());
-            stmt.setInt(5, obj.getCustomerId());
-            stmt.setInt(6, obj.getId());
+            stmt.setInt(1, obj.getProductId());
+            stmt.setString(2, obj.getProductName());
+            stmt.setFloat(3, obj.getProductPrice());
+            stmt.setInt(4, obj.getQty());
+            stmt.setFloat(5, obj.getTotalPrice());
+            stmt.setInt(6, obj.getRecieptId());
+            stmt.setInt(7, obj.getId());
 //          System.out.println(stmt);
             int ret = stmt.executeUpdate();
             System.out.println(ret);
@@ -152,7 +154,7 @@ public class RecieptDetailDao implements Dao<RecieptDetail> {
 
     @Override
     public int delete(RecieptDetail obj) {
-        String sql = "DELETE FROM recieptDetail WHERE recieptDetail_id=?";
+        String sql = "DELETE FROM reciept_detail WHERE reciept_detail_id=?";
         Connection conn = DatabaseHelper.getConnect();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);

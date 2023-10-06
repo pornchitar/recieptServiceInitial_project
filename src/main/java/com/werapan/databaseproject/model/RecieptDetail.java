@@ -20,7 +20,7 @@ public class RecieptDetail {
     private float productPrice;
     private int qty;
     private float totalPrice;
-    private int reciepId;
+    private int recieptId;
 
     public RecieptDetail(int id, int productId, String productName, float productPrice, int qty, float totalPrice, int reciepId) {
         this.id = id;
@@ -29,7 +29,7 @@ public class RecieptDetail {
         this.productPrice = productPrice;
         this.qty = qty;
         this.totalPrice = totalPrice;
-        this.reciepId = reciepId;
+        this.recieptId = recieptId;
     }
     
     public RecieptDetail( int productId, String productName, float productPrice, int qty, float totalPrice, int reciepId) {
@@ -39,7 +39,7 @@ public class RecieptDetail {
         this.productPrice = productPrice;
         this.qty = qty;
         this.totalPrice = totalPrice;
-        this.reciepId = reciepId;
+        this.recieptId = recieptId;
     }
     
     public RecieptDetail() {
@@ -49,7 +49,7 @@ public class RecieptDetail {
         this.productPrice = 0;
         this.qty = 0;
         this.totalPrice = 0;
-        this.reciepId = 0;
+        this.recieptId = 0;
     }
 
     public int getId() {
@@ -100,33 +100,33 @@ public class RecieptDetail {
         this.totalPrice = totalPrice;
     }
 
-    public int getReciepId() {
-        return reciepId;
+    public int getRecieptId() {
+        return recieptId;
     }
 
-    public void setReciepId(int reciepId) {
-        this.reciepId = reciepId;
+    public void setRecieptId(int reciepId) {
+        this.recieptId = recieptId;
     }
 
     @Override
     public String toString() {
-        return "RecieptDetial{" + "id=" + id + ", productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice + ", qty=" + qty + ", totalPrice=" + totalPrice + ", reciepId=" + reciepId + '}';
+        return "RecieptDetial{" + "id=" + id + ", productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice + ", qty=" + qty + ", totalPrice=" + totalPrice + ", reciepId=" + recieptId + '}';
     }
     
     public static RecieptDetail fromRS(ResultSet rs) {
-        RecieptDetail recieptDetial = new RecieptDetail();
+        RecieptDetail recieptDetail = new RecieptDetail();
         try {
-            recieptDetial.setId(rs.getInt("reciept_detial_id"));
-            recieptDetial.setProductId(rs.getInt("product_id"));
-            recieptDetial.setProductName(rs.getString("product_name"));
-            recieptDetial.setProductPrice(rs.getFloat("product_price"));
-            recieptDetial.setQty(rs.getInt("qty"));
-            recieptDetial.setTotalPrice(rs.getFloat("total_price"));
-            recieptDetial.setReciepId(rs.getInt("reciept_id"));
+            recieptDetail.setId(rs.getInt("reciept_detail_id"));
+            recieptDetail.setProductId(rs.getInt("product_id"));
+            recieptDetail.setProductName(rs.getString("product_name"));
+            recieptDetail.setProductPrice(rs.getFloat("product_price"));
+            recieptDetail.setQty(rs.getInt("qty"));
+            recieptDetail.setTotalPrice(rs.getFloat("total_price"));
+            recieptDetail.setRecieptId(rs.getInt("reciept_id"));
         } catch (SQLException ex) {
             Logger.getLogger(Customer.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
-        return recieptDetial;
+        return recieptDetail;
     }
 }

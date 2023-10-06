@@ -20,4 +20,5 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>com.werapan.databaseproject.DatabaseProject</exec.mainClass>
     </properties>
+    <name>recieptServiceInitial_project</name>
 </project>

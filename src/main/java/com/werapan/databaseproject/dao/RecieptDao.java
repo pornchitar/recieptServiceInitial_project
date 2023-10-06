@@ -129,15 +129,18 @@ public class RecieptDao implements Dao<Reciept> {
     @Override
     public Reciept update(Reciept obj) {
         String sql = "UPDATE reciept"
-                + " SET reciept_name = ?, reciept_tel = ?"
+                + " SET total = ?, cash = ?, total_qty = ?, user_id = ?, customer_id = ?"
                 + " WHERE reciept_id = ?";
         Connection conn = DatabaseHelper.getConnect();
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1, obj.getName());
-            stmt.setString(2, obj.getTel());
-            stmt.setInt(3, obj.getId());
-//            System.out.println(stmt);
+            stmt.setFloat(1, obj.getTotal());
+            stmt.setFloat(2, obj.getCash());
+            stmt.setInt(3, obj.getTotalQty());
+            stmt.setInt(4, obj.getUserId());
+            stmt.setInt(5, obj.getCustomerId());
+            stmt.setInt(6, obj.getId());
+//          System.out.println(stmt);
             int ret = stmt.executeUpdate();
             System.out.println(ret);
             return obj;

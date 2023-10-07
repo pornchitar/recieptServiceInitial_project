@@ -5,7 +5,9 @@
 package com.werapan.databaseproject.service;
 
 import com.werapan.databaseproject.dao.RecieptDao;
+import com.werapan.databaseproject.dao.RecieptDetailDao;
 import com.werapan.databaseproject.model.Reciept;
+import com.werapan.databaseproject.model.RecieptDetail;
 import java.util.List;
 
 /**
@@ -25,7 +27,13 @@ public class RecieptService {
 
     public Reciept addNew(Reciept editedReciept) {
         RecieptDao recieptDao = new RecieptDao();
-        return recieptDao.save(editedReciept);
+        RecieptDetailDao recieptDetailDao = new RecieptDetailDao();
+        Reciept reciept = recieptDao.save(editedReciept);
+        for(RecieptDetail rd: editedReciept.getRecieptDetails()){
+            rd.setRecieptId(reciept.getId());
+            recieptDetailDao.save(rd);
+        }
+        return reciept;
     }
 
     public Reciept update(Reciept editedReciept) {

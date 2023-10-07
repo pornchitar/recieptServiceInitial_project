@@ -6,6 +6,7 @@ package com.werapan.databaseproject.dao;
 
 import com.werapan.databaseproject.helper.DatabaseHelper;
 import com.werapan.databaseproject.model.Reciept;
+import com.werapan.databaseproject.model.RecieptDetail;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,6 +33,9 @@ public class RecieptDao implements Dao<Reciept> {
 
             while (rs.next()) {
                 reciept = Reciept.fromRS(rs);
+                RecieptDetailDao rdd = new RecieptDetailDao();
+                ArrayList<RecieptDetail> recieptDetails = (ArrayList<RecieptDetail>) rdd.getAll("reciept_id="+reciept.getId(), "reciept_detail_id");
+                reciept.setRecieptDetails(recieptDetails);
             }
 
         } catch (SQLException ex) {
@@ -119,6 +123,7 @@ public class RecieptDao implements Dao<Reciept> {
             stmt.executeUpdate();
             int id = DatabaseHelper.getInsertedId(stmt);
             obj.setId(id);
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
             return null;
